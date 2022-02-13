@@ -4,6 +4,7 @@
 #include "reduced.h"
 
 int main() {
+
     std::cout << "Hello, welcome to the box office in the cinema!\n\n";
 
     std::cout << "How many tickets are available? ";

@@ -1,3 +1,15 @@
+include(FetchContent)
+
+include(FetchContent)
+
+FetchContent_Declare(
+        xlnt
+        GIT_REPOSITORY "https://github.com/tfussell/xlnt"
+        GIT_TAG "master"
+)
+
+FetchContent_MakeAvailable(xlnt)
+
 cmake_minimum_required(VERSION 3.4)
 
 #Configuration parameters of cmake
@@ -27,6 +39,9 @@ set(SOURCE_FILES
 add_executable(Project ${SOURCE_FILES})
 
 target_include_directories(Project PUBLIC include)
+target_link_libraries(
+        Project
+        xlnt)
 
 #TESTs
 find_package (Boost 1.60.0 COMPONENTS "unit_test_framework" REQUIRED)
