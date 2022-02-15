@@ -30,11 +30,21 @@ set(SOURCE_FILES
         include/normal.h
         include/reduced.h
         include/ticket.h
+        include/movie.h
+        include/screening.h
+        include/room.h
+        include/seat.h
+        include/registry.h
         src/boxoffice.cpp
         src/main.cpp
         src/normal.cpp
         src/reduced.cpp
-        src/ticket.cpp)
+        src/ticket.cpp
+        src/movie.cpp
+        src/screening.cpp
+        src/room.cpp
+        src/seat.cpp
+        src/registry.cpp)
 
 add_executable(Project ${SOURCE_FILES})
 
@@ -57,9 +67,14 @@ set(SOURCE_TEST_FILES
         test/TestBoxOffice.cpp
         test/TestTickets.cpp
         src/boxoffice.cpp
+        src/main.cpp
         src/normal.cpp
         src/reduced.cpp
-        src/ticket.cpp)
+        src/ticket.cpp
+        src/movie.cpp
+        src/screening.cpp
+        src/room.cpp
+        src/seat.cpp)
 
 add_executable(TestProject ${SOURCE_TEST_FILES})
 
