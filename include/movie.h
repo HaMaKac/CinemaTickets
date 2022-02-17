@@ -11,7 +11,9 @@ class Movie{
 
 public:
     Movie(std::string name, int duration, int price);
-    ~Movie(){};
+    ~Movie() = default;
+
+    std::string toString();
 
     //Getters
     const std::string &getName() const {return name;}

@@ -2,11 +2,11 @@
 
 Seat::Seat(unsigned int rowNumber, unsigned int seatNumber) {
     this->rowNumber = rowNumber;
-    this->seatNumber = rowNumber;
+    this->seatNumber = seatNumber;
 }
 
-void Seat::setAvailability(Availability availability) {
-    this->availability = availability;
+void Seat::setAvailability(Availability available) {
+    this->availability = available;
 }
 
 Seat::~Seat() {

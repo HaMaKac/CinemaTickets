@@ -1,11 +1,65 @@
 #include <iostream>
+#include <xlnt/xlnt.hpp>
+#include "registry.h"
 #include "boxoffice.h"
 #include "normal.h"
 #include "reduced.h"
+#include "movie.h"
 
 int main() {
 
-    std::cout << "Hello, welcome to the box office in the cinema!\n\n";
+    std::vector<std::shared_ptr<Movie>> movies;
+
+    xlnt::path path("../workbook.xlsx");
+
+    xlnt::workbook workbook;
+    workbook.load(path);
+
+    xlnt::worksheet worksheet = workbook.active_sheet();
+    for (auto row : worksheet.rows(false))
+    {
+        std::string name;
+        int duration;
+        int price;
+
+        for (auto cell : row)
+        {
+            switch(cell.column_index()){
+                case 1:
+                    name = cell.to_string();
+                    break;
+                case 2:
+                    duration = atoi(cell.to_string().c_str());
+                    break;
+                case 3:
+                    price = atoi(cell.to_string().c_str());
+                    break;
+            }
+        }
+        workbook.save(path);
+
+        auto newMovie = std::make_shared<Movie>(name, duration, price);
+        movies.push_back(newMovie);
+    }
+
+    //Just for the sake of testing the registries...
+    //I still need to add some functionality to registries, but I'm too tired now...
+    auto movieRegistry = std::make_unique<Registry<Movie>>();
+
+    for(auto movie : movies){
+        movieRegistry->addItem(std::make_pair(movie->getName() ,*movie));
+    }
+
+    for(auto movie : movies){
+        std::clog << movieRegistry->getItemByName(movie->getName()).toString() << std::endl;
+    }
+
+
+    std::clog << "Done!";
+
+
+
+/*    std::cout << "Hello, welcome to the box office in the cinema!\n\n";
 
     std::cout << "How many tickets are available? ";
     int maxTickets = 0;
@@ -35,7 +89,7 @@ int main() {
 
     } else {
         std::cout << "\nThere are 100 seats, that is impossible.\n";
-    }
+    }*/
 
     return 0;
 }

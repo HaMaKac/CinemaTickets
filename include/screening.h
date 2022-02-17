@@ -8,6 +8,8 @@
 class Screening{
 
     unsigned int time;
+    Movie * movie;
+    Room * room;
 
 public:
     Screening(Movie* movie, Room* room, unsigned int time);

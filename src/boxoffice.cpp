@@ -10,54 +10,54 @@ BoxOffice::~BoxOffice() {
 
 }
 
-int BoxOffice::getAllTicketsCount() {
+int BoxOffice::getAllTicketsCount() const {
     return allTicketsCount;
 }
 
-bool BoxOffice::sellTicket(std::shared_ptr<Ticket> tick) {
+bool BoxOffice::sellTicket(const std::shared_ptr<Ticket>& tick) {
     if (getRemainingTicketsCount() > 0) {
 
-        std::vector<std::shared_ptr<Ticket>>::iterator i = ticket.begin();
+        auto i = tickets.begin();
 
-        for (std::shared_ptr<Ticket> i : ticket) {
+        for (std::shared_ptr<Ticket> i : tickets) {
             if (i->getSeat() == tick->getSeat()) {
-                std::cout << "This ticket cannot be sold - the chosen seat is already occupied!\n";
+                std::cout << "This tickets cannot be sold - the chosen seat is already occupied!\n";
                 return false;
             }
         }
-        ticket.push_back(tick);
+        tickets.push_back(tick);
         std::cout << "Ticket sold. Enjoy watching!\n";
         return true;
     } else {
-        std::cout << "This ticket cannot be sold - there are no left tickets!\n";
+        std::cout << "This tickets cannot be sold - there are no left tickets!\n";
         return false;
     }
 }
 
-int BoxOffice::getSoldTicketsCount() {
-    return ticket.size();
+unsigned long BoxOffice::getSoldTicketsCount() {
+    return tickets.size();
 }
 
-int BoxOffice::getRemainingTicketsCount() {
+unsigned long BoxOffice::getRemainingTicketsCount() {
     return getAllTicketsCount()-getSoldTicketsCount();
 }
 
 double BoxOffice::getTotalProfit() {
     double totalProfit{0};
-    for (std::shared_ptr<Ticket> tick : ticket) {
+    for (const std::shared_ptr<Ticket>& tick : tickets) {
         totalProfit += tick->getCost();
     }
     return totalProfit;
 }
 
 void BoxOffice::displaySoldTickets() {
-    std::string soldTickets{""};
+    std::string soldTickets;
     if (getSoldTicketsCount() == 0) {
         std::cout << "No sold tickets!\n";
     } else {
         std::cout << "\nAll sold tickets:\n";
         int i = 0;
-        for (std::shared_ptr<Ticket> tick : ticket) {
+        for (const std::shared_ptr<Ticket>& tick : tickets) {
             i++;
             soldTickets += "Ticket " + std::to_string(i) + ": seat " + std::to_string(tick->getSeat()) + ", price " +
                         std::to_string(tick->getPrice()) + ", cost " + std::to_string(tick->getCost()) + "\n";

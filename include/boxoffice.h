@@ -9,15 +9,15 @@
 class BoxOffice {
 
     int allTicketsCount{0};
-    std::vector<std::shared_ptr<Ticket>> ticket;
+    std::vector<std::shared_ptr<Ticket>> tickets;
 
 public:
     BoxOffice(int allTicketsCount);
     ~BoxOffice();
-    int getAllTicketsCount();
-    bool sellTicket(std::shared_ptr<Ticket> tick);
-    int getSoldTicketsCount();
-    int getRemainingTicketsCount();
+    int getAllTicketsCount() const;
+    bool sellTicket(const std::shared_ptr<Ticket>& tick);
+    unsigned long getSoldTicketsCount();
+    unsigned long getRemainingTicketsCount();
     double getTotalProfit();
     void displaySoldTickets();
 };

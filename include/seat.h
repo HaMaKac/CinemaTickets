@@ -17,7 +17,7 @@ public:
     Seat(unsigned int rowNumber = 0, unsigned int seatNumber = 0);
     ~Seat();
 
-    void setAvailability(Availability availability);
+    void setAvailability(Availability available);
 
     //Getters
     unsigned int getRowNumber() const {return rowNumber;}

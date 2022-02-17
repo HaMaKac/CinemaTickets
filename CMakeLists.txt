@@ -44,7 +44,7 @@ set(SOURCE_FILES
         src/screening.cpp
         src/room.cpp
         src/seat.cpp
-        src/registry.cpp)
+        )
 
 add_executable(Project ${SOURCE_FILES})
 
@@ -74,7 +74,8 @@ set(SOURCE_TEST_FILES
         src/movie.cpp
         src/screening.cpp
         src/room.cpp
-        src/seat.cpp)
+        src/seat.cpp
+        )
 
 add_executable(TestProject ${SOURCE_TEST_FILES})
 
