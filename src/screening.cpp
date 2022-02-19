@@ -1,6 +1,6 @@
 #include "screening.h"
 
-Screening::Screening(Movie *movie, Room *room, unsigned int time) {
+Screening::Screening(std::shared_ptr<Movie> movie, std::shared_ptr<Room> room, unsigned int time) {
     this->time = time;
     this->room = room;
     this->movie = movie;
@@ -11,5 +11,5 @@ Screening::~Screening() {
 }
 
 std::string Screening::getAll() {
-    return std::string();
+    return "Time of screening: " + std::to_string(time) + "\nRoom: " + room->getName() + "\nMovie: " + movie->toString();
 }

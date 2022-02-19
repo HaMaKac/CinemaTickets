@@ -6,9 +6,9 @@
 
 class Room{
 
-    std::string name;
-    unsigned int rows;
-    unsigned int seatsInRow;
+    std::string name{"ExampleName"};
+    unsigned int rows{0};
+    unsigned int seatsInRow{0};
     Seat** seats;
 
 public:

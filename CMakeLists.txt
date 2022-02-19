@@ -44,7 +44,7 @@ set(SOURCE_FILES
         src/screening.cpp
         src/room.cpp
         src/seat.cpp
-        )
+        include/workbookmanager.h src/workbookmanager.cpp)
 
 add_executable(Project ${SOURCE_FILES})
 

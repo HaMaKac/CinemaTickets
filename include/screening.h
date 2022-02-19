@@ -1,18 +1,18 @@
 #ifndef CINEMATICKETS_SCREENING_H
 #define CINEMATICKETS_SCREENING_H
-
 #include <string>
+#include <memory>
 #include "movie.h"
 #include "room.h"
 
 class Screening{
 
     unsigned int time;
-    Movie * movie;
-    Room * room;
+    std::shared_ptr<Movie> movie;
+    std::shared_ptr<Room> room;
 
 public:
-    Screening(Movie* movie, Room* room, unsigned int time);
+    Screening(std::shared_ptr<Movie> movie, std::shared_ptr<Room> room, unsigned int time);
     ~Screening();
 
     //Getters

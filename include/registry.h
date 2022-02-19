@@ -27,7 +27,12 @@ public:
     }
 
     T getItemByName(std::string name) {
-        return registeredItems.at(name);
+        try {
+            return registeredItems.at(name);
+        }
+        catch(const std::out_of_range message){
+            std::cerr << message.what();
+        }
     }
 };
 

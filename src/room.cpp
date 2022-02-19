@@ -1,7 +1,10 @@
+#include <iostream>
+#include <utility>
 #include "room.h"
 
 Room::Room(std::string name, unsigned int rows, unsigned int seatsInRow) {
 
+    this->name = std::move(name);
     this->rows = rows;
     this->seatsInRow = seatsInRow;
 
@@ -17,7 +20,7 @@ Room::Room(std::string name, unsigned int rows, unsigned int seatsInRow) {
 Room::~Room() {
 
     for(int i = 0; i < rows; i++){
-        delete(seats[i]);
+        delete [] seats[i];
     }
-    delete seats;
+    delete [] seats;
 }
