@@ -16,7 +16,9 @@ public:
     ~Screening();
 
     //Getters
+    std::shared_ptr<Room> getRoom();
     std::string getAll();
+    int getPrice();
 
 };
 

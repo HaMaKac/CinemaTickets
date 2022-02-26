@@ -1,6 +1,6 @@
 #include "normal.h"
 
-Normal::Normal(unsigned seat, int price) : Ticket(seat, price) {
+Normal::Normal(std::shared_ptr<Screening> screening, Seat * seat) : Ticket(screening, seat) {
 
 }
 

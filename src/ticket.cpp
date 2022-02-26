@@ -1,18 +1,18 @@
 #include "ticket.h"
 
-Ticket::Ticket(unsigned seat, int price) {
+Ticket::Ticket(std::shared_ptr<Screening> screening, Seat *seat) {
+    this->screening = std::move(screening);
     this->seat = seat;
-    this->price = price;
 }
 
-Ticket::~Ticket() {
-
+std::shared_ptr<Screening> Ticket::getScreening() {
+    return screening;
 }
 
-unsigned Ticket::getSeat() {
+Seat * Ticket::getSeat() {
     return seat;
 }
 
 int Ticket::getPrice() {
-    return price;
+    return this->screening->getPrice();
 }

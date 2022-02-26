@@ -1,6 +1,6 @@
 #include "reduced.h"
 
-Reduced::Reduced(unsigned seat, int price, int discount) : Ticket(seat, price) {
+Reduced::Reduced(std::shared_ptr<Screening> screening, Seat * seat, int discount) : Ticket(screening, seat) {
     this->discount = discount;
 }
 

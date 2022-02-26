@@ -15,9 +15,8 @@ class WorkbookManager{
     xlnt::workbook workbook;
     xlnt::worksheet worksheet;
 
-private:
     WorkbookManager();
-    static WorkbookManager* worksheetManager;
+    static WorkbookManager* workbookManager;
 
 public:
     WorkbookManager(WorkbookManager &other) = delete;

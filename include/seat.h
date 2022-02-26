@@ -1,6 +1,8 @@
 #ifndef CINEMATICKETS_SEAT_H
 #define CINEMATICKETS_SEAT_H
 
+#include <string>
+
 enum Availability{
     AVAILABLE = 0,
     RESERVED = 1,
@@ -22,6 +24,8 @@ public:
     //Getters
     unsigned int getRowNumber() const {return rowNumber;}
     unsigned int getSeatNumber() const {return seatNumber;}
+
+    std::string ToString();
 };
 
 #endif //CINEMATICKETS_SEAT_H

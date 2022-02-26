@@ -1,14 +1,12 @@
 #include "workbookmanager.h"
 
-#include <utility>
-
-WorkbookManager* WorkbookManager::worksheetManager = nullptr;
+WorkbookManager* WorkbookManager::workbookManager = nullptr;
 
 WorkbookManager *WorkbookManager::GetInstance() {
-    if(worksheetManager == nullptr){
-        worksheetManager = new WorkbookManager;
+    if(workbookManager == nullptr){
+        workbookManager = new WorkbookManager;
     }
-    return worksheetManager;
+    return workbookManager;
 }
 
 WorkbookManager::WorkbookManager() {

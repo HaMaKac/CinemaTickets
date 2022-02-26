@@ -12,3 +12,7 @@ void Seat::setAvailability(Availability available) {
 Seat::~Seat() {
 
 }
+
+std::string Seat::ToString() {
+    return "seat row = " + std::to_string(rowNumber) + ", seat number = " + std::to_string(seatNumber);
+}

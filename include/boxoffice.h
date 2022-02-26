@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <memory>
+#include <iostream>
+#include <string>
 #include "normal.h"
 #include "reduced.h"
 
@@ -12,13 +14,20 @@ class BoxOffice {
     std::vector<std::shared_ptr<Ticket>> tickets;
 
 public:
-    BoxOffice(int allTicketsCount);
-    ~BoxOffice();
-    int getAllTicketsCount() const;
+
+    BoxOffice() = default;
+
+    std::shared_ptr<Normal> buyNormalTicket(std::shared_ptr<Screening> screening, Seat * seat);
+    std::shared_ptr<Reduced> buyReducedTicket(std::shared_ptr<Screening> screening, Seat *seat, int discount);
+
+
     bool sellTicket(const std::shared_ptr<Ticket>& tick);
+
+    int getAllTicketsCount() const;
     unsigned long getSoldTicketsCount();
     unsigned long getRemainingTicketsCount();
     double getTotalProfit();
+
     void displaySoldTickets();
 };
 

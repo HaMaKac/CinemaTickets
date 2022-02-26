@@ -1,16 +1,22 @@
 #ifndef OOP21_WW_03_TICKET_H
 #define OOP21_WW_03_TICKET_H
 
+#include "seat.h"
+#include "screening.h"
+
 class Ticket {
 
-    unsigned seat{0};
-    int price{0};
+    std::shared_ptr<Screening> screening;
+    Seat * seat;
 
 public:
-    Ticket(unsigned seat, int price);
-    ~Ticket();
-    unsigned getSeat();
-    int getPrice();
+    Ticket(std::shared_ptr<Screening> screening, Seat *seat);
+    ~Ticket() = default;
+
+    //Getters
+    std::shared_ptr<Screening> getScreening();
+    Seat * getSeat();
+    virtual int getPrice();
     virtual double getCost() = 0;
 };
 

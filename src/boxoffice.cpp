@@ -1,14 +1,13 @@
-#include <iostream>
-#include <string>
 #include "boxoffice.h"
 
-BoxOffice::BoxOffice(int allTicketsCount) {
-    this->allTicketsCount = allTicketsCount;
+std::shared_ptr<Normal> BoxOffice::buyNormalTicket(std::shared_ptr<Screening> screening, Seat *seat) {
+    return std::make_shared<Normal>(screening, seat);
 }
 
-BoxOffice::~BoxOffice() {
-
+std::shared_ptr<Reduced> BoxOffice::buyReducedTicket(std::shared_ptr<Screening> screening, Seat *seat, int discount) {
+    return std::make_shared<Reduced>(screening, seat, discount);
 }
+
 
 int BoxOffice::getAllTicketsCount() const {
     return allTicketsCount;
@@ -59,10 +58,9 @@ void BoxOffice::displaySoldTickets() {
         int i = 0;
         for (const std::shared_ptr<Ticket>& tick : tickets) {
             i++;
-            soldTickets += "Ticket " + std::to_string(i) + ": seat " + std::to_string(tick->getSeat()) + ", price " +
+            soldTickets += "Ticket " + std::to_string(i) + ": " + tick->getSeat()->ToString() + ", price " +
                         std::to_string(tick->getPrice()) + ", cost " + std::to_string(tick->getCost()) + "\n";
         }
         std::cout << soldTickets;
     }
 }
-
