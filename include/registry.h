@@ -1,12 +1,12 @@
 #ifndef CINEMATICKETS_REGISTRY_H
 #define CINEMATICKETS_REGISTRY_H
 
-#include <unordered_map>
+#include <map>
 #include <string>
 
 template <class T> class Registry{
 
-    std::unordered_map<std::string, T> registeredItems;
+    std::map<std::string, T> registeredItems;
 
 public:
     Registry() = default;
@@ -24,6 +24,16 @@ public:
 
         registeredItems.insert(pair);
         return pair.first;
+    }
+
+    void listAllItems(){
+
+        std::cout << "List of items in registry:" << std::endl;
+
+        for(auto item : registeredItems){
+
+            std::cout << " > \"" << item.first << "\"" << std::endl;
+        }
     }
 
     T getItemByName(std::string name) {

@@ -8,6 +8,7 @@
 #include "movie.h"
 #include "room.h"
 #include "screening.h"
+#include "ticket.h"
 
 class WorkbookManager{
 
@@ -28,6 +29,9 @@ public:
     std::unique_ptr<Registry<std::shared_ptr<Room>>> loadRooms();
     std::unique_ptr<std::vector<std::shared_ptr<Screening>>> loadScreenings(Registry<std::shared_ptr<Movie>> movies,
                                                                             Registry<std::shared_ptr<Room>> rooms);
+
+    bool canSellTicket(Ticket *ticket);
+    void saveSoldTicket(Ticket *ticket);
 
     void changeFilenameToLoad(std::string pathToFile);
 };

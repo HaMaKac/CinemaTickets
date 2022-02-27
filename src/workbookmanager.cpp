@@ -116,6 +116,58 @@ WorkbookManager::loadScreenings(Registry<std::shared_ptr<Movie>> movies, Registr
     return screenings;
 }
 
+bool WorkbookManager::canSellTicket(Ticket *ticket) {
+
+    for (auto row : worksheet.rows(false))
+    {
+        for (auto cell : row)
+        {
+            if(!cell.has_value()) continue;
+            switch(cell.column_index()){
+                case 10:
+                    if(atoi(cell.to_string().c_str()) != ticket->getScreening()->getTime()) return true;
+                    break;
+                case 11:
+                    if(cell.to_string() != ticket->getScreening()->getRoom()->getName()) return true;
+                    break;
+                case 12:
+                    if(atoi(cell.to_string().c_str()) != ticket->getSeat()->getRowNumber()) return true;
+                    break;
+                case 13:
+                    if(atoi(cell.to_string().c_str()) != ticket->getSeat()->getSeatNumber()) return true;
+                    break;
+            }
+        }
+    }
+
+    return false;
+}
+
+void WorkbookManager::saveSoldTicket(Ticket *ticket) {
+
+    for (auto row : worksheet.rows(false))
+    {
+        for (auto cell : row)
+        {
+            if(cell.has_value()) continue;
+            switch(cell.column_index()){
+                case 10:
+                    cell.value(ticket->getScreening()->getTime());
+                    break;
+                case 11:
+                    cell.value(ticket->getScreening()->getRoom()->getName());
+                    break;
+                case 12:
+                    cell.value(ticket->getSeat()->getRowNumber());
+                    break;
+                case 13:
+                    cell.value(ticket->getSeat()->getSeatNumber());
+                    break;
+            }
+        }
+    }
+}
+
 void WorkbookManager::changeFilenameToLoad(std::string pathToFile) {
     path = std::move(pathToFile);
     workbook.load(path);

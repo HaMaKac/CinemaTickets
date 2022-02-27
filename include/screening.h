@@ -16,9 +16,11 @@ public:
     ~Screening();
 
     //Getters
-    std::shared_ptr<Room> getRoom();
     std::string getAll();
-    int getPrice();
+
+    std::shared_ptr<Room> getRoom(){return room;};
+    int getPrice(){return movie->getPrice();};
+    unsigned int getTime(){return time;};
 
 };
 
