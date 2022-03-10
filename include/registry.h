@@ -30,7 +30,7 @@ public:
 
         std::cout << "List of items in registry:" << std::endl;
 
-        for(auto item : registeredItems){
+        for(std::pair<std::string, T> item : registeredItems){
 
             std::cout << " > \"" << item.first << "\"" << std::endl;
         }

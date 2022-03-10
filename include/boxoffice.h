@@ -17,8 +17,8 @@ public:
 
     BoxOffice() = default;
 
-    std::shared_ptr<Normal> buyNormalTicket(std::shared_ptr<Screening> screening, Seat * seat);
-    std::shared_ptr<Reduced> buyReducedTicket(std::shared_ptr<Screening> screening, Seat *seat, int discount);
+    static std::shared_ptr<Normal> buyNormalTicket(const std::shared_ptr<Screening>& screening, Seat * seat);
+    static std::shared_ptr<Reduced> buyReducedTicket(const std::shared_ptr<Screening>& screening, Seat *seat, int discount);
 
 
     bool sellTicket(const std::shared_ptr<Ticket>& tick);

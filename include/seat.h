@@ -5,8 +5,7 @@
 
 enum Availability{
     AVAILABLE = 0,
-    RESERVED = 1,
-    OCCUPIED = 2
+    OCCUPIED = 1
 };
 
 class Seat{

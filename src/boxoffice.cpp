@@ -1,10 +1,10 @@
 #include "boxoffice.h"
 
-std::shared_ptr<Normal> BoxOffice::buyNormalTicket(std::shared_ptr<Screening> screening, Seat *seat) {
+std::shared_ptr<Normal> BoxOffice::buyNormalTicket(const std::shared_ptr<Screening>& screening, Seat *seat) {
     return std::make_shared<Normal>(screening, seat);
 }
 
-std::shared_ptr<Reduced> BoxOffice::buyReducedTicket(std::shared_ptr<Screening> screening, Seat *seat, int discount) {
+std::shared_ptr<Reduced> BoxOffice::buyReducedTicket(const std::shared_ptr<Screening>& screening, Seat *seat, int discount) {
     return std::make_shared<Reduced>(screening, seat, discount);
 }
 
@@ -16,9 +16,9 @@ int BoxOffice::getAllTicketsCount() const {
 bool BoxOffice::sellTicket(const std::shared_ptr<Ticket>& tick) {
     if (getRemainingTicketsCount() > 0) {
 
-        auto i = tickets.begin();
+        tickets.begin();
 
-        for (std::shared_ptr<Ticket> i : tickets) {
+        for (const std::shared_ptr<Ticket>& i : tickets) {
             if (i->getSeat() == tick->getSeat()) {
                 std::cout << "This tickets cannot be sold - the chosen seat is already occupied!\n";
                 return false;

@@ -10,6 +10,7 @@ class Screening{
     unsigned int time;
     std::shared_ptr<Movie> movie;
     std::shared_ptr<Room> room;
+    Seat** seats;
 
 public:
     Screening(std::shared_ptr<Movie> movie, std::shared_ptr<Room> room, unsigned int time);
@@ -20,7 +21,8 @@ public:
 
     std::shared_ptr<Room> getRoom(){return room;};
     int getPrice(){return movie->getPrice();};
-    unsigned int getTime(){return time;};
+    Seat *occupySeat(int row, int number);
+    unsigned int getTime() const{return time;};
 
 };
 

@@ -1,6 +1,7 @@
 #include <iostream>
 #include "workbookmanager.h"
 #include "movie.h"
+#include "boxoffice.h"
 
 int main() {
 
@@ -16,6 +17,9 @@ int main() {
     //Screenings vector
     auto screenings = std::move(workbookManager->loadScreenings(*movieRegistry, *roomRegistry));
 
+    //Box office initialization
+    BoxOffice boxOffice;
+
     while(isRunning){
         std::cout << "Type \"1\" to buy a normal ticket." << std::endl;
         std::cout << "Type \"2\" to buy a discounted ticket." << std::endl;
@@ -24,19 +28,40 @@ int main() {
         std::cout << "Type \"5\" to display all registered screenings." << std::endl;
         std::cout << "Type \"6\" to exit the app." << std::endl;
 
-        int input;
+        int input, input2;
+
         std::cin >> input;
+
+        std::shared_ptr<Screening> screening;
 
         switch(input) {
             case 1:
                 std::cout << std::endl << "Enter the screening id:";
                 std::cin >> input;
-                
 
-                //TODO: user input
+                screening = screenings->at(input);
+
+                std::cout << std::endl << "Enter seat row:";
+                std::cin >> input;
+
+                std::cout << std::endl << "Enter seat number:";
+                std::cin >> input2;
+
+                boxOffice.buyNormalTicket(screening, screening->occupySeat(input, input2));
                 break;
             case 2:
+                std::cout << std::endl << "Enter the screening id:";
+                std::cin >> input;
 
+                screening = screenings->at(input);
+
+                std::cout << std::endl << "Enter seat row:";
+                std::cin >> input;
+
+                std::cout << std::endl << "Enter seat number:";
+                std::cin >> input2;
+
+                boxOffice.buyReducedTicket(screening, screening->occupySeat(input, input2), 15);
                 break;
             case 3:
                 movieRegistry->listAllItems();
@@ -46,7 +71,7 @@ int main() {
                 break;
             case 5:
                 for(int i = 0; i < screenings->size(); ++i){
-                    std::cout << i << ".\n" << screenings->at(i)->getAll() << std::endl;
+                    std::cout << i + 1 << ".\n" << screenings->at(i)->getAll() << std::endl;
                 }
                 break;
             case 6:
