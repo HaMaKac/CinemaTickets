@@ -32,6 +32,10 @@ Seat *Screening::occupySeat(int row, int number) {
     return &seats[row][number];
 }
 
+Seat *Screening::getSeat(int row, int number) {
+    return &seats[row][number];
+}
+
 void Screening::displaySeats() {
     for(int i = 0; i < room->getRows(); i++) {
         std::cout << std::endl;

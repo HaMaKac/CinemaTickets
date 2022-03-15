@@ -17,22 +17,21 @@ int main() {
     //Screenings vector
     auto screenings = std::move(workbookManager->loadScreenings(*movieRegistry, *roomRegistry));
 
-    //Box office initialization
-    BoxOffice boxOffice;
-
     while(isRunning){
         std::cout << "Type \"1\" to buy a normal ticket." << std::endl;
         std::cout << "Type \"2\" to buy a discounted ticket." << std::endl;
         std::cout << "Type \"3\" to display all registered movies." << std::endl;
         std::cout << "Type \"4\" to display all registered rooms." << std::endl;
         std::cout << "Type \"5\" to display all registered screenings." << std::endl;
-        std::cout << "Type \"6\" to exit the app." << std::endl;
+        std::cout << "Type \"6\" to display seat availability." << std::endl;
+        std::cout << "Type \"7\" to exit the app." << std::endl;
 
         int input, input2;
 
         std::cin >> input;
 
         std::shared_ptr<Screening> screening;
+        std::shared_ptr<Ticket> ticket;
 
         switch(input) {
             case 1:
@@ -47,7 +46,13 @@ int main() {
                 std::cout << std::endl << "Enter seat number:";
                 std::cin >> input2;
 
-                boxOffice.buyNormalTicket(screening, screening->occupySeat(input, input2));
+                ticket = BoxOffice::buyNormalTicket(screening, screening->getSeat(input, input2));
+
+                if(workbookManager->canSellTicket(ticket)){
+                    screening->occupySeat(input, input2);
+                    workbookManager->saveSoldTicket(ticket);
+                }
+
                 break;
             case 2:
                 std::cout << std::endl << "Enter the screening id:";
@@ -61,7 +66,12 @@ int main() {
                 std::cout << std::endl << "Enter seat number:";
                 std::cin >> input2;
 
-                boxOffice.buyReducedTicket(screening, screening->occupySeat(input, input2), 15);
+                ticket = BoxOffice::buyReducedTicket(screening, screening->getSeat(input, input2), 15);
+
+                if(workbookManager->canSellTicket(ticket)){
+                    screening->occupySeat(input, input2);
+                    workbookManager->saveSoldTicket(ticket);
+                }
                 break;
             case 3:
                 movieRegistry->listAllItems();
@@ -75,11 +85,15 @@ int main() {
                 }
                 break;
             case 6:
-                isRunning = false;
+                std::cout << std::endl << "Enter the screening id:";
+                std::cin >> input;
+
+                screening = screenings->at(input);
+                screening->displaySeats();
                 break;
             case 7:
-                screening = screenings->at(2);
-                screening->displaySeats();
+                isRunning = false;
+                break;
         }
         std::cout << "Press enter to continue..." << std::endl;
         //system("read");

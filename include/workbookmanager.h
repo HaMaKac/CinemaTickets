@@ -29,11 +29,8 @@ public:
     std::unique_ptr<Registry<std::shared_ptr<Room>>> loadRooms();
     std::unique_ptr<std::vector<std::shared_ptr<Screening>>> loadScreenings(Registry<std::shared_ptr<Movie>> movies,
                                                                             Registry<std::shared_ptr<Room>> rooms);
-
-    bool canSellTicket(Ticket *ticket);
-    void saveSoldTicket(Ticket *ticket);
-
-    void changeFilenameToLoad(std::string pathToFile);
+    bool canSellTicket(std::shared_ptr<Ticket> ticket);
+    void saveSoldTicket(std::shared_ptr<Ticket> ticket);
 };
 
 #endif //CINEMATICKETS_WORKBOOKMANAGER_H

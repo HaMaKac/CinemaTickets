@@ -22,6 +22,7 @@ public:
     std::shared_ptr<Room> getRoom(){return room;};
     int getPrice(){return movie->getPrice();};
     Seat *occupySeat(int row, int number);
+    Seat *getSeat(int row, int number);
     unsigned int getTime() const{return time;};
     void displaySeats();
 

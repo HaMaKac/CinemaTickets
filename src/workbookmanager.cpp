@@ -113,37 +113,78 @@ WorkbookManager::loadScreenings(Registry<std::shared_ptr<Movie>> movies, Registr
         }
     }
 
-    return screenings;
-}
-
-bool WorkbookManager::canSellTicket(Ticket *ticket) {
-
     for (auto row : worksheet.rows(false))
     {
+        unsigned int time;
+        int rownum, number;
+        std::string roomName;
         for (auto cell : row)
         {
             if(!cell.has_value()) continue;
             switch(cell.column_index()){
                 case 10:
-                    if(atoi(cell.to_string().c_str()) != ticket->getScreening()->getTime()) return true;
+                    time = atoi(cell.to_string().c_str());
                     break;
                 case 11:
-                    if(cell.to_string() != ticket->getScreening()->getRoom()->getName()) return true;
+                    roomName = cell.to_string();
                     break;
                 case 12:
-                    if(atoi(cell.to_string().c_str()) != ticket->getSeat()->getRowNumber()) return true;
+                    rownum = atoi(cell.to_string().c_str());
                     break;
                 case 13:
-                    if(atoi(cell.to_string().c_str()) != ticket->getSeat()->getSeatNumber()) return true;
+                    number = atoi(cell.to_string().c_str());
                     break;
             }
         }
+
+        for(auto screening : *screenings){
+            if(screening->getTime() == time && screening->getRoom()->getName() == roomName){
+                screening->occupySeat(rownum, number);
+            }
+        }
+
     }
 
-    return false;
+    return screenings;
 }
 
-void WorkbookManager::saveSoldTicket(Ticket *ticket) {
+bool WorkbookManager::canSellTicket(std::shared_ptr<Ticket> ticket) {
+
+    bool repeats = true;
+
+    for (auto row : worksheet.rows(false))
+    {
+        bool rowEmpty = true;
+        for (auto cell : row)
+        {
+            if(!cell.has_value()) continue;
+            switch(cell.column_index()){
+                case 10:
+                    rowEmpty = false;
+                    if(atoi(cell.to_string().c_str()) != ticket->getScreening()->getTime()) repeats = false;
+                    break;
+                case 11:
+                    rowEmpty = false;
+                    if(cell.to_string() != ticket->getScreening()->getRoom()->getName()) repeats = false;
+                    break;
+                case 12:
+                    rowEmpty = false;
+                    if(atoi(cell.to_string().c_str()) != ticket->getSeat()->getRowNumber()) repeats= false;
+                    break;
+                case 13:
+                    rowEmpty = false;
+                    if(atoi(cell.to_string().c_str()) != ticket->getSeat()->getSeatNumber()) repeats = false;
+                    break;
+            }
+        }
+        if(repeats && !rowEmpty) return false;
+    }
+    return true;
+}
+
+void WorkbookManager::saveSoldTicket(std::shared_ptr<Ticket> ticket) {
+
+    //TODO: Fix the saving algorithm since it doesn't work.
 
     for (auto row : worksheet.rows(false))
     {
@@ -166,10 +207,5 @@ void WorkbookManager::saveSoldTicket(Ticket *ticket) {
             }
         }
     }
-}
-
-void WorkbookManager::changeFilenameToLoad(std::string pathToFile) {
-    path = std::move(pathToFile);
-    workbook.load(path);
-    worksheet = workbook.active_sheet();
+    workbook.save(path);
 }
