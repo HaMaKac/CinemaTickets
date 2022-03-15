@@ -38,7 +38,7 @@ int main() {
                 std::cout << std::endl << "Enter the screening id:";
                 std::cin >> input;
 
-                screening = screenings->at(input);
+                screening = screenings->at(input-1);
 
                 std::cout << std::endl << "Enter seat row:";
                 std::cin >> input;
@@ -46,10 +46,10 @@ int main() {
                 std::cout << std::endl << "Enter seat number:";
                 std::cin >> input2;
 
-                ticket = BoxOffice::buyNormalTicket(screening, screening->getSeat(input, input2));
+                ticket = BoxOffice::buyNormalTicket(screening, screening->getSeat(input-1, input2-1));
 
                 if(workbookManager->canSellTicket(ticket)){
-                    screening->occupySeat(input, input2);
+                    screening->occupySeat(input-1, input2-1);
                     workbookManager->saveSoldTicket(ticket);
                 }
 
@@ -58,7 +58,7 @@ int main() {
                 std::cout << std::endl << "Enter the screening id:";
                 std::cin >> input;
 
-                screening = screenings->at(input);
+                screening = screenings->at(input-1);
 
                 std::cout << std::endl << "Enter seat row:";
                 std::cin >> input;
@@ -66,10 +66,10 @@ int main() {
                 std::cout << std::endl << "Enter seat number:";
                 std::cin >> input2;
 
-                ticket = BoxOffice::buyReducedTicket(screening, screening->getSeat(input, input2), 15);
+                ticket = BoxOffice::buyReducedTicket(screening, screening->getSeat(input-1, input2-1), 15);
 
                 if(workbookManager->canSellTicket(ticket)){
-                    screening->occupySeat(input, input2);
+                    screening->occupySeat(input-1, input2-1);
                     workbookManager->saveSoldTicket(ticket);
                 }
                 break;
@@ -88,7 +88,7 @@ int main() {
                 std::cout << std::endl << "Enter the screening id:";
                 std::cin >> input;
 
-                screening = screenings->at(input);
+                screening = screenings->at(input-1);
                 screening->displaySeats();
                 break;
             case 7:

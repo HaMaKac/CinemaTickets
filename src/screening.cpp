@@ -37,6 +37,9 @@ Seat *Screening::getSeat(int row, int number) {
 }
 
 void Screening::displaySeats() {
+
+    std::cout << std::endl << "0 - available, X - occupied" << std::endl;
+
     for(int i = 0; i < room->getRows(); i++) {
         std::cout << std::endl;
         for(int j = 0; j < room->getSeatsInRow(); j++){
@@ -44,7 +47,7 @@ void Screening::displaySeats() {
                 std::cout << " 0";
             }
             else {
-                std::cout << " 1";
+                std::cout << " X";
             }
         }
     }
