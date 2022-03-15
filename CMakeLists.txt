@@ -82,6 +82,7 @@ add_executable(TestProject ${SOURCE_TEST_FILES})
 target_include_directories(TestProject PUBLIC include)
 
 target_link_libraries (TestProject
+        xlnt
         ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 
 enable_testing()

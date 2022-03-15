@@ -1,3 +1,4 @@
+#include <iostream>
 #include "screening.h"
 
 Screening::Screening(std::shared_ptr<Movie> movie, std::shared_ptr<Room> room, unsigned int time) {
@@ -29,4 +30,19 @@ std::string Screening::getAll() {
 Seat *Screening::occupySeat(int row, int number) {
     seats[row][number].setAvailability(OCCUPIED);
     return &seats[row][number];
+}
+
+void Screening::displaySeats() {
+    for(int i = 0; i < room->getRows(); i++) {
+        std::cout << std::endl;
+        for(int j = 0; j < room->getSeatsInRow(); j++){
+            if (seats[i][j].getAvailability() == "0") {
+                std::cout << " 0";
+            }
+            else {
+                std::cout << " 1";
+            }
+        }
+    }
+    std::cout << std::endl << std::endl;
 }

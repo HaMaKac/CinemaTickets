@@ -6,7 +6,7 @@
 
 BOOST_AUTO_TEST_SUITE(TestBoxOfficeSuite)
 
-BOOST_AUTO_TEST_CASE(testBoxOffice_NoSoldTickets_ZeroTotalProfit) {
+/*BOOST_AUTO_TEST_CASE(testBoxOffice_NoSoldTickets_ZeroTotalProfit) {
         BoxOffice boxoffice(10);
 
         BOOST_CHECK_EQUAL(boxoffice.getTotalProfit(), 0);
@@ -27,6 +27,6 @@ BOOST_AUTO_TEST_CASE(testBoxOffice_FourTickets_SoldTickets_TotalProfit) {
 
         BOOST_CHECK_EQUAL(boxoffice.getSoldTicketsCount(), 2);
         BOOST_CHECK_EQUAL(boxoffice.getTotalProfit(), 15);
-}
+}*/
 
 BOOST_AUTO_TEST_SUITE_END()

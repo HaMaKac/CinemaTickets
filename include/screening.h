@@ -23,6 +23,7 @@ public:
     int getPrice(){return movie->getPrice();};
     Seat *occupySeat(int row, int number);
     unsigned int getTime() const{return time;};
+    void displaySeats();
 
 };
 

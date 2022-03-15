@@ -77,9 +77,12 @@ int main() {
             case 6:
                 isRunning = false;
                 break;
+            case 7:
+                screening = screenings->at(2);
+                screening->displaySeats();
         }
         std::cout << "Press enter to continue..." << std::endl;
-        system("read");
+        //system("read");
     }
 
     std::clog << "Done!";

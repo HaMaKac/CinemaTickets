@@ -9,6 +9,11 @@ void Seat::setAvailability(Availability available) {
     this->availability = available;
 }
 
+std::string Seat::getAvailability() {
+    std::string state = std::to_string(availability);
+    return state;
+}
+
 Seat::~Seat() {
 
 }

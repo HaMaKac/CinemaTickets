@@ -21,6 +21,7 @@ public:
     void setAvailability(Availability available);
 
     //Getters
+    std::string getAvailability();
     unsigned int getRowNumber() const {return rowNumber;}
     unsigned int getSeatNumber() const {return seatNumber;}
 
