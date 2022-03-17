@@ -46,11 +46,18 @@ int main() {
                 std::cout << std::endl << "Enter seat number:";
                 std::cin >> input2;
 
+                if (!(input - 1 >= 0 && input2 - 1 >= 0)) {
+                    std::cout << "Wrong seat number" << std::endl;
+                    break;
+                }
+
                 ticket = BoxOffice::buyNormalTicket(screening, screening->getSeat(input-1, input2-1));
 
                 if(workbookManager->canSellTicket(ticket)){
                     screening->occupySeat(input-1, input2-1);
                     workbookManager->saveSoldTicket(ticket);
+                } else {
+                    std::cout << "Seat already taken, select a different one" << std::endl;
                 }
 
                 break;
@@ -66,11 +73,18 @@ int main() {
                 std::cout << std::endl << "Enter seat number:";
                 std::cin >> input2;
 
+                if (!(input - 1 >= 0 && input2 - 1 >= 0)) {
+                    std::cout << "Wrong seat number" << std::endl;
+                    break;
+                }
+
                 ticket = BoxOffice::buyReducedTicket(screening, screening->getSeat(input-1, input2-1), 15);
 
                 if(workbookManager->canSellTicket(ticket)){
                     screening->occupySeat(input-1, input2-1);
                     workbookManager->saveSoldTicket(ticket);
+                } else {
+                    std::cout << "Seat already taken, select a different one." << std::endl;
                 }
                 break;
             case 3:
@@ -93,6 +107,8 @@ int main() {
                 break;
             case 7:
                 isRunning = false;
+                break;
+            default:
                 break;
         }
         std::cout << "Press enter to continue..." << std::endl;

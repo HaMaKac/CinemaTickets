@@ -42,7 +42,7 @@ void Screening::displaySeats() {
 
     for(int i = 0; i < room->getRows(); i++) {
         std::cout << std::endl;
-        for(int j = 0; j < room->getSeatsInRow(); j++){
+        for(int j = 0; j < room->getSeatsInRow(); j++) {
             if (seats[i][j].getAvailability() == "0") {
                 std::cout << " 0";
             }

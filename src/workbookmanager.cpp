@@ -169,11 +169,11 @@ bool WorkbookManager::canSellTicket(std::shared_ptr<Ticket> ticket) {
                     break;
                 case 12:
                     rowEmpty = false;
-                    if(atoi(cell.to_string().c_str()) != ticket->getSeat()->getRowNumber()) repeats= false;
+                    if(atoi(cell.to_string().c_str()) != ticket->getSeat()->getRowNumber() - 1) repeats= false;
                     break;
                 case 13:
                     rowEmpty = false;
-                    if(atoi(cell.to_string().c_str()) != ticket->getSeat()->getSeatNumber()) repeats = false;
+                    if(atoi(cell.to_string().c_str()) != ticket->getSeat()->getSeatNumber() - 1) repeats = false;
                     break;
             }
         }
@@ -184,27 +184,13 @@ bool WorkbookManager::canSellTicket(std::shared_ptr<Ticket> ticket) {
 
 void WorkbookManager::saveSoldTicket(std::shared_ptr<Ticket> ticket) {
 
-    //TODO: Fix the saving algorithm since it doesn't work.
-
-    for (auto row : worksheet.rows(false))
-    {
-        for (auto cell : row)
-        {
-            if(cell.has_value()) continue;
-            switch(cell.column_index()){
-                case 10:
-                    cell.value(ticket->getScreening()->getTime());
-                    break;
-                case 11:
-                    cell.value(ticket->getScreening()->getRoom()->getName());
-                    break;
-                case 12:
-                    cell.value(ticket->getSeat()->getRowNumber());
-                    break;
-                case 13:
-                    cell.value(ticket->getSeat()->getSeatNumber());
-                    break;
-            }
+    for (int rowIdx = 1; rowIdx < INT_MAX; ++rowIdx) {
+        if (!worksheet.cell(10, rowIdx).has_value()) {
+            worksheet.cell(10, rowIdx).value(ticket->getScreening()->getTime());
+            worksheet.cell(11, rowIdx).value(ticket->getScreening()->getRoom()->getName());
+            worksheet.cell(12, rowIdx).value(ticket->getSeat()->getRowNumber() - 1);
+            worksheet.cell(13, rowIdx).value(ticket->getSeat()->getSeatNumber() - 1);
+            break;
         }
     }
     workbook.save(path);

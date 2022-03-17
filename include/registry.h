@@ -26,7 +26,7 @@ public:
         return pair.first;
     }
 
-    void listAllItems(){
+    void listAllItems() {
 
         std::cout << "List of items in registry:" << std::endl;
 
@@ -40,7 +40,7 @@ public:
         try {
             return registeredItems.at(name);
         }
-        catch(const std::out_of_range message){
+        catch(const std::out_of_range &message){
             std::cerr << message.what();
         }
     }
