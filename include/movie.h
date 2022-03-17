@@ -10,6 +10,7 @@ class Movie{
     int price;
 
 public:
+
     Movie(std::string name, int duration, int price);
     ~Movie() = default;
 
@@ -17,7 +18,6 @@ public:
 
     //Getters
     const std::string &getName() const {return name;}
-    int getDuration() const {return duration;}
     int getPrice() const {return price;}
 
 };

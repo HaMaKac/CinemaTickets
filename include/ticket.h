@@ -16,7 +16,7 @@ public:
     //Getters
     std::shared_ptr<Screening> getScreening();
     Seat * getSeat();
-    virtual int getPrice();
+    int getPrice();
     virtual double getCost() = 0;
 };
 

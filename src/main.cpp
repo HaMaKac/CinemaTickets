@@ -111,11 +111,10 @@ int main() {
             default:
                 break;
         }
-        std::cout << "Press enter to continue..." << std::endl;
-        //system("read");
+        std::cout << std::endl<<std::endl;
     }
 
-    std::clog << "Done!";
+    std::cout << "\nDone!";
 
     return 0;
 }
