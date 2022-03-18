@@ -10,8 +10,6 @@
 
 class BoxOffice {
 
-    std::vector<std::shared_ptr<Ticket>> tickets;
-
 public:
 
     BoxOffice() = default;

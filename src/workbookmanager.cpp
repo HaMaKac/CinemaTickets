@@ -1,3 +1,4 @@
+#include <climits>
 #include "workbookmanager.h"
 
 WorkbookManager* WorkbookManager::workbookManager = nullptr;
@@ -142,7 +143,6 @@ WorkbookManager::loadScreenings(Registry<std::shared_ptr<Movie>> movies, Registr
                 screening->occupySeat(rownum, number);
             }
         }
-
     }
 
     return screenings;

@@ -14,10 +14,10 @@ std::string Seat::getAvailability() {
     return state;
 }
 
-Seat::~Seat() {
-
+unsigned int Seat::getRowNumber() {
+    return rowNumber;
 }
 
-std::string Seat::ToString() {
-    return "seat row = " + std::to_string(rowNumber) + ", seat number = " + std::to_string(seatNumber);
+unsigned int Seat::getSeatNumber() {
+    return seatNumber;
 }

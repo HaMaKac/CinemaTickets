@@ -6,7 +6,10 @@
 class Normal : public Ticket {
 
 public:
+
     Normal(std::shared_ptr<Screening>, Seat * seat);
+
+    //Getter
     double getCost() override;
 };
 

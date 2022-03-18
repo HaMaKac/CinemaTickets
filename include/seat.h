@@ -16,16 +16,15 @@ class Seat{
 
 public:
     Seat(unsigned int rowNumber = 0, unsigned int seatNumber = 0);
-    ~Seat();
+    ~Seat() = default;
 
     void setAvailability(Availability available);
 
     //Getters
     std::string getAvailability();
-    unsigned int getRowNumber() const {return rowNumber;}
-    unsigned int getSeatNumber() const {return seatNumber;}
+    unsigned int getRowNumber();
+    unsigned int getSeatNumber();
 
-    std::string ToString();
 };
 
 #endif //CINEMATICKETS_SEAT_H

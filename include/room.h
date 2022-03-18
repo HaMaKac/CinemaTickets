@@ -6,18 +6,19 @@
 
 class Room{
 
-    std::string name{"ExampleName"};
+    std::string name;
     unsigned int rows{0};
     unsigned int seatsInRow{0};
 
 public:
+
     Room(std::string name, unsigned int rows, unsigned int seatsInRow);
     ~Room() = default;
 
     //Getters
-    const std::string &getName() const {return name;}
-    unsigned int getRows() const {return rows;};
-    unsigned int getSeatsInRow() const {return  seatsInRow;};
+    std::string getName();
+    unsigned int getRows();
+    unsigned int getSeatsInRow();
 };
 
 #endif //CINEMATICKETS_ROOM_H

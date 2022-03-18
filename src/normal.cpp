@@ -7,4 +7,3 @@ Normal::Normal(std::shared_ptr<Screening> screening, Seat * seat) : Ticket(scree
 double Normal::getCost() {
     return getPrice();
 }
-

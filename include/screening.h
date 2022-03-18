@@ -13,19 +13,19 @@ class Screening{
     Seat** seats;
 
 public:
-    Screening(std::shared_ptr<Movie> movie, std::shared_ptr<Room> room, unsigned int time);
+
+    Screening(std::shared_ptr<Movie> movie, const std::shared_ptr<Room>& room, unsigned int time);
     ~Screening();
 
     //Getters
     std::string getAll();
-
-    std::shared_ptr<Room> getRoom(){return room;};
-    int getPrice(){return movie->getPrice();};
-    Seat *occupySeat(int row, int number);
+    int getPrice();
+    unsigned int getTime();
+    std::shared_ptr<Room> getRoom();
     Seat *getSeat(int row, int number);
-    unsigned int getTime() const{ return time;};
-    void displaySeats();
 
+    Seat *occupySeat(int row, int number);
+    void displaySeats();
 };
 
 #endif //CINEMATICKETS_SCREENING_H

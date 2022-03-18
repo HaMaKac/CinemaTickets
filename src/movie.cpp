@@ -9,3 +9,11 @@ Movie::Movie(std::string name, int duration, int price) {
 std::string Movie::toString() {
     return "Name: " + name + ", duration = " + std::to_string(duration) + ", price = " + std::to_string(price);
 }
+
+std::string Movie::getName() {
+    return name;
+}
+
+int Movie::getPrice() {
+    return price;
+}

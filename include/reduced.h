@@ -8,7 +8,10 @@ class Reduced : public Ticket {
     int discount{0};
 
 public:
+
     Reduced(std::shared_ptr<Screening> screening, Seat * seat, int discount);
+
+    //Getters
     double getCost() override;
     int getDiscount();
 };

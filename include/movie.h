@@ -17,8 +17,8 @@ public:
     std::string toString();
 
     //Getters
-    const std::string &getName() const {return name;}
-    int getPrice() const {return price;}
+    std::string getName();
+    int getPrice();
 
 };
 

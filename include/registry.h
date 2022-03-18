@@ -9,6 +9,7 @@ template <class T> class Registry{
     std::map<std::string, T> registeredItems;
 
 public:
+
     Registry() = default;
 
     Registry(std::initializer_list <std::pair<std::string, T>> share_states) {
@@ -28,7 +29,7 @@ public:
 
     void listAllItems() {
 
-        std::cout << "List of items in registry:" << std::endl;
+        std::cout << "\nList of items in registry:" << std::endl;
 
         for(std::pair<std::string, T> item : registeredItems){
 

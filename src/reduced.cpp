@@ -11,4 +11,3 @@ double Reduced::getCost() {
 int Reduced::getDiscount() {
     return discount;
 }
-

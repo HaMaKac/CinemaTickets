@@ -1,10 +1,10 @@
 #include <iostream>
 #include "screening.h"
 
-Screening::Screening(std::shared_ptr<Movie> movie, std::shared_ptr<Room> room, unsigned int time) {
-    this->time = time;
-    this->room = room;
+Screening::Screening(std::shared_ptr<Movie> movie, const std::shared_ptr<Room>& room, unsigned int time) {
     this->movie = movie;
+    this->room = room;
+    this->time = time;
 
     this->seats = new Seat * [room->getRows()];
     for(int i = 0; i < room->getRows(); i++){
@@ -22,17 +22,28 @@ Screening::~Screening() {
     delete [] this->seats;
 }
 
-
 std::string Screening::getAll() {
     return "Time of screening: " + std::to_string(time) + "\nRoom: " + room->getName() + "\nMovie: " + movie->toString();
 }
 
-Seat *Screening::occupySeat(int row, int number) {
-    seats[row][number].setAvailability(OCCUPIED);
-    return &seats[row][number];
+int Screening::getPrice() {
+    return movie->getPrice();
+}
+
+unsigned int Screening::getTime() {
+    return time;
+}
+
+std::shared_ptr<Room> Screening::getRoom() {
+    return room;
 }
 
 Seat *Screening::getSeat(int row, int number) {
+    return &seats[row][number];
+}
+
+Seat *Screening::occupySeat(int row, int number) {
+    seats[row][number].setAvailability(OCCUPIED);
     return &seats[row][number];
 }
 

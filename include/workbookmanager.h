@@ -20,6 +20,7 @@ class WorkbookManager{
     static WorkbookManager* workbookManager;
 
 public:
+
     WorkbookManager(WorkbookManager &other) = delete;
     void operator=(const WorkbookManager &) = delete;
 
@@ -27,8 +28,7 @@ public:
 
     std::unique_ptr<Registry<std::shared_ptr<Movie>>> loadMovies();
     std::unique_ptr<Registry<std::shared_ptr<Room>>> loadRooms();
-    std::unique_ptr<std::vector<std::shared_ptr<Screening>>> loadScreenings(Registry<std::shared_ptr<Movie>> movies,
-                                                                            Registry<std::shared_ptr<Room>> rooms);
+    std::unique_ptr<std::vector<std::shared_ptr<Screening>>> loadScreenings(Registry<std::shared_ptr<Movie>> movies, Registry<std::shared_ptr<Room>> rooms);
     bool canSellTicket(std::shared_ptr<Ticket> ticket);
     void saveSoldTicket(std::shared_ptr<Ticket> ticket);
 };
