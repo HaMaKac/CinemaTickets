@@ -44,7 +44,8 @@ set(SOURCE_FILES
         src/screening.cpp
         src/room.cpp
         src/seat.cpp
-        include/workbookmanager.h src/workbookmanager.cpp)
+        include/workbookmanager.h
+        src/workbookmanager.cpp)
 
 add_executable(Project ${SOURCE_FILES})
 
@@ -67,7 +68,6 @@ set(SOURCE_TEST_FILES
         test/TestBoxOffice.cpp
         test/TestTickets.cpp
         src/boxoffice.cpp
-        src/main.cpp
         src/normal.cpp
         src/reduced.cpp
         src/ticket.cpp
@@ -75,6 +75,7 @@ set(SOURCE_TEST_FILES
         src/screening.cpp
         src/room.cpp
         src/seat.cpp
+        src/workbookmanager.cpp
         )
 
 add_executable(TestProject ${SOURCE_TEST_FILES})

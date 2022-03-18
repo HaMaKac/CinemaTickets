@@ -39,12 +39,12 @@ std::shared_ptr<Room> Screening::getRoom() {
 }
 
 Seat *Screening::getSeat(int row, int number) {
-    return &seats[row][number];
+    return &seats[row - 1][number - 1];
 }
 
 Seat *Screening::occupySeat(int row, int number) {
-    seats[row][number].setAvailability(OCCUPIED);
-    return &seats[row][number];
+    seats[row - 1][number - 1].setAvailability(OCCUPIED);
+    return &seats[row - 1][number - 1];
 }
 
 void Screening::displaySeats() {
