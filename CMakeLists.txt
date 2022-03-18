@@ -67,6 +67,7 @@ set(SOURCE_TEST_FILES
         test/master.cpp
         test/TestBoxOffice.cpp
         test/TestTickets.cpp
+        test/TestWorkbookManager.cpp
         src/boxoffice.cpp
         src/normal.cpp
         src/reduced.cpp
@@ -75,8 +76,7 @@ set(SOURCE_TEST_FILES
         src/screening.cpp
         src/room.cpp
         src/seat.cpp
-        src/workbookmanager.cpp
-        )
+        src/workbookmanager.cpp)
 
 add_executable(TestProject ${SOURCE_TEST_FILES})
 
