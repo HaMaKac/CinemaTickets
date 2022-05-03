@@ -1,2 +1,2 @@
-# CinemaTickets
-Initial
+# Cinema Tickets
+Cinema Tickets is a training project, created to learn object-oriented programming in C++. It is about choosing seats and buying tickets for a screening of some movie in some room. It imports and exports data into a datasheet. I used CLion on Linux (a virtual machine) and CMake to control the software compilation. I made UML class diagram of my project. I created unit tests using Boost library.
